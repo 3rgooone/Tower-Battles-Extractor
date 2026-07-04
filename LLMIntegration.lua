@@ -1,34 +1,34 @@
 -- ============================================================================
--- LLM INTEGRATION - Intégration avec LLM pour compréhension des scripts
--- Utilisation d'un LLM pour comprendre et reconstruire la logique des scripts
+-- EXTERNAL API INTEGRATION - Integration with external API for script understanding
+-- Uses external API to understand and reconstruct script logic
 -- ============================================================================
 
-local LLMIntegration = {}
+local ExternalAPIIntegration = {}
 
 -- ============================================================================
--- CONFIGURATION LLM
+-- EXTERNAL API CONFIGURATION
 -- ============================================================================
 
-LLMIntegration.Config = {
-    -- API Endpoint (à configurer)
-    APIEndpoint = "https://api.openai.com/v1/chat/completions",
-    APIKey = "", -- À configurer
-    Model = "gpt-4",
+ExternalAPIIntegration.Config = {
+    -- API Endpoint (Groq - Free, Fast, High Quality)
+    APIEndpoint = "https://api.groq.com/openai/v1/chat/completions",
+    APIKey = "", -- To configure
+    Model = "llama-3.1-70b-versatile",
     
-    -- Paramètres
+    -- Parameters
     MaxTokens = 4000,
     Temperature = 0.7,
     
-    -- Activer/Désactiver
-    Enabled = false -- Désactivé par défaut (nécessite API key)
+    -- Enable/Disable
+    Enabled = false -- Disabled by default (requires API key)
 }
 
 -- ============================================================================
--- PRÉPARATION DES PROMPTS
+-- PROMPT PREPARATION
 -- ============================================================================
 
-LLMIntegration.PromptBuilder = {
-    -- Construire un prompt pour l'analyse de script
+ExternalAPIIntegration.PromptBuilder = {
+    -- Build a prompt for script analysis
     BuildScriptAnalysisPrompt = function(scriptData)
         local prompt = [[
 You are a Roblox game reverse-engineering expert. Analyze the following script data and provide detailed insights.
@@ -76,7 +76,7 @@ Format your response as JSON with the following structure:
         return prompt
     end,
     
-    -- Formater les upvalues
+    -- Format upvalues
     FormatUpvalues = function(upvalues)
         local formatted = ""
         for name, value in pairs(upvalues) do
@@ -85,7 +85,7 @@ Format your response as JSON with the following structure:
         return formatted
     end,
     
-    -- Construire un prompt pour la reconstruction de script
+    -- Build a prompt for script reconstruction
     BuildScriptReconstructionPrompt = function(scriptData, analysis)
         local prompt = [[
 You are a Roblox game reconstruction expert. Based on the following analysis, reconstruct the script code.
@@ -113,17 +113,17 @@ Provide the reconstructed code in a code block.
 }
 
 -- ============================================================================
--- APPEL API LLM
+-- EXTERNAL API CALL
 -- ============================================================================
 
-LLMIntegration.LLMAPI = {
-    -- Appeler l'API LLM
-    CallLLM = function(prompt)
-        if not LLMIntegration.Config.Enabled then
-            return {Success = false, Reason = "LLM integration disabled"}
+ExternalAPIIntegration.ExternalAPI = {
+    -- Call external API
+    CallExternalAPI = function(prompt)
+        if not ExternalAPIIntegration.Config.Enabled then
+            return {Success = false, Reason = "External API integration disabled"}
         end
         
-        if LLMIntegration.Config.APIKey == "" then
+        if ExternalAPIIntegration.Config.APIKey == "" then
             return {Success = false, Reason = "API key not configured"}
         end
         
@@ -131,20 +131,20 @@ LLMIntegration.LLMAPI = {
         
         local success, response = pcall(function()
             return httpService:RequestAsync({
-                Url = LLMIntegration.Config.APIEndpoint,
+                Url = ExternalAPIIntegration.Config.APIEndpoint,
                 Method = "POST",
                 Headers = {
                     ["Content-Type"] = "application/json",
-                    ["Authorization"] = "Bearer " .. LLMIntegration.Config.APIKey
+                    ["Authorization"] = "Bearer " .. ExternalAPIIntegration.Config.APIKey
                 },
                 Body = httpService:JSONEncode({
-                    model = LLMIntegration.Config.Model,
+                    model = ExternalAPIIntegration.Config.Model,
                     messages = {
                         {role = "system", content = "You are a Roblox game reverse-engineering expert."},
                         {role = "user", content = prompt}
                     },
-                    max_tokens = LLMIntegration.Config.MaxTokens,
-                    temperature = LLMIntegration.Config.Temperature
+                    max_tokens = ExternalAPIIntegration.Config.MaxTokens,
+                    temperature = ExternalAPIIntegration.Config.Temperature
                 })
             })
         end)
@@ -167,81 +167,81 @@ LLMIntegration.LLMAPI = {
 }
 
 -- ============================================================================
--- ANALYSE AVEC LLM
+-- ANALYSIS WITH EXTERNAL API
 -- ============================================================================
 
-LLMIntegration.ScriptAnalyzer = {
-    -- Analyser un script avec le LLM
-    AnalyzeWithLLM = function(scriptData)
-        print(string.format("[LLM] Analyse du script: %s", scriptData.Name))
+ExternalAPIIntegration.ScriptAnalyzer = {
+    -- Analyze script with external API
+    AnalyzeWithExternalAPI = function(scriptData)
+        print(string.format("[EXTERNAL API] Analyzing script: %s", scriptData.Name))
         
-        local prompt = LLMIntegration.PromptBuilder.BuildScriptAnalysisPrompt(scriptData)
-        local llmResponse = LLMIntegration.LLMAPI.CallLLM(prompt)
+        local prompt = ExternalAPIIntegration.PromptBuilder.BuildScriptAnalysisPrompt(scriptData)
+        local apiResponse = ExternalAPIIntegration.ExternalAPI.CallExternalAPI(prompt)
         
-        if not llmResponse.Success then
-            print(string.format("[LLM] Erreur: %s", llmResponse.Reason))
-            return llmResponse
+        if not apiResponse.Success then
+            print(string.format("[EXTERNAL API] Error: %s", apiResponse.Reason))
+            return apiResponse
         end
         
-        print("[LLM] Analyse terminée avec succès")
+        print("[EXTERNAL API] Analysis completed successfully")
         
-        -- Parser la réponse JSON
+        -- Parse JSON response
         local httpService = game:GetService("HttpService")
         local success, parsed = pcall(function()
-            return httpService:JSONDecode(llmResponse.Response)
+            return httpService:JSONDecode(apiResponse.Response)
         end)
         
         if not success then
-            print("[LLM] Erreur parsing JSON")
+            print("[EXTERNAL API] Error parsing JSON")
             return {Success = false, Reason = "Failed to parse JSON response"}
         end
         
         return {
             Success = true,
             Analysis = parsed,
-            RawResponse = llmResponse.Response
+            RawResponse = apiResponse.Response
         }
     end
 }
 
 -- ============================================================================
--- RECONSTRUCTION AVEC LLM
+-- RECONSTRUCTION WITH EXTERNAL API
 -- ============================================================================
 
-LLMIntegration.ScriptReconstructor = {
-    -- Reconstruire un script avec le LLM
-    ReconstructWithLLM = function(scriptData, analysis)
-        print(string.format("[LLM] Reconstruction du script: %s", scriptData.Name))
+ExternalAPIIntegration.ScriptReconstructor = {
+    -- Reconstruct script with external API
+    ReconstructWithExternalAPI = function(scriptData, analysis)
+        print(string.format("[EXTERNAL API] Reconstructing script: %s", scriptData.Name))
         
-        local prompt = LLMIntegration.PromptBuilder.BuildScriptReconstructionPrompt(scriptData, analysis)
-        local llmResponse = LLMIntegration.LLMAPI.CallLLM(prompt)
+        local prompt = ExternalAPIIntegration.PromptBuilder.BuildScriptReconstructionPrompt(scriptData, analysis)
+        local apiResponse = ExternalAPIIntegration.ExternalAPI.CallExternalAPI(prompt)
         
-        if not llmResponse.Success then
-            print(string.format("[LLM] Erreur: %s", llmResponse.Reason))
-            return llmResponse
+        if not apiResponse.Success then
+            print(string.format("[EXTERNAL API] Error: %s", apiResponse.Reason))
+            return apiResponse
         end
         
-        print("[LLM] Reconstruction terminée avec succès")
+        print("[EXTERNAL API] Reconstruction completed successfully")
         
-        -- Extraire le code de la réponse
-        local code = llmResponse.Response:match("```lua\n(.-)```") or llmResponse.Response:match("```\n(.-)```") or llmResponse.Response
+        -- Extract code from response
+        local code = apiResponse.Response:match("```lua\n(.-)```") or apiResponse.Response:match("```\n(.-)```") or apiResponse.Response
         
         return {
             Success = true,
             ReconstructedCode = code,
-            RawResponse = llmResponse.Response
+            RawResponse = apiResponse.Response
         }
     end
 }
 
 -- ============================================================================
--- ANALYSE EN LOT
+-- BATCH ANALYSIS
 -- ============================================================================
 
-LLMIntegration.BatchAnalyzer = {
-    -- Analyser plusieurs scripts en lot
+ExternalAPIIntegration.BatchAnalyzer = {
+    -- Analyze multiple scripts in batch
     AnalyzeBatch = function(scriptDataList)
-        print(string.format("[LLM] Analyse en lot de %d scripts", #scriptDataList))
+        print(string.format("[EXTERNAL API] Batch analysis of %d scripts", #scriptDataList))
         
         local results = {
             Timestamp = tick(),
@@ -254,7 +254,7 @@ LLMIntegration.BatchAnalyzer = {
         }
         
         for _, scriptData in pairs(scriptDataList) do
-            local result = LLMIntegration.ScriptAnalyzer.AnalyzeWithLLM(scriptData)
+            local result = ExternalAPIIntegration.ScriptAnalyzer.AnalyzeWithExternalAPI(scriptData)
             
             result.ScriptName = scriptData.Name
             table.insert(results.Scripts, result)
@@ -265,11 +265,11 @@ LLMIntegration.BatchAnalyzer = {
                 results.Summary.Failed = results.Summary.Failed + 1
             end
             
-            -- Délai pour éviter rate limiting
+            -- Delay to avoid rate limiting
             wait(1)
         end
         
-        print(string.format("[LLM] Analyse en lot terminée - %d succès, %d échecs", results.Summary.Successful, results.Summary.Failed))
+        print(string.format("[EXTERNAL API] Batch analysis completed - %d successful, %d failed", results.Summary.Successful, results.Summary.Failed))
         
         return results
     end
@@ -279,28 +279,28 @@ LLMIntegration.BatchAnalyzer = {
 -- CONFIGURATION
 -- ============================================================================
 
-function LLMIntegration.Configure(config)
+function ExternalAPIIntegration.Configure(config)
     if config.APIEndpoint then
-        LLMIntegration.Config.APIEndpoint = config.APIEndpoint
+        ExternalAPIIntegration.Config.APIEndpoint = config.APIEndpoint
     end
     if config.APIKey then
-        LLMIntegration.Config.APIKey = config.APIKey
+        ExternalAPIIntegration.Config.APIKey = config.APIKey
     end
     if config.Model then
-        LLMIntegration.Config.Model = config.Model
+        ExternalAPIIntegration.Config.Model = config.Model
     end
     if config.MaxTokens then
-        LLMIntegration.Config.MaxTokens = config.MaxTokens
+        ExternalAPIIntegration.Config.MaxTokens = config.MaxTokens
     end
     if config.Temperature then
-        LLMIntegration.Config.Temperature = config.Temperature
+        ExternalAPIIntegration.Config.Temperature = config.Temperature
     end
     if config.Enabled ~= nil then
-        LLMIntegration.Config.Enabled = config.Enabled
+        ExternalAPIIntegration.Config.Enabled = config.Enabled
     end
     
-    print("[LLM] Configuration mise à jour")
-    print(string.format("[LLM] Enabled: %s", LLMIntegration.Config.Enabled))
+    print("[EXTERNAL API] Configuration updated")
+    print(string.format("[EXTERNAL API] Enabled: %s", ExternalAPIIntegration.Config.Enabled))
 end
 
-return LLMIntegration
+return ExternalAPIIntegration

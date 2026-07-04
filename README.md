@@ -472,12 +472,15 @@ _G.TowerBattlesExtractorConfig = {
 
 ```lua
 ExternalAPIConfig = {
-    APIKey = "your-api-key",
-    Model = "gpt-4",
+    APIKey = "your-groq-api-key",
+    BaseURL = "https://api.groq.com/openai/v1",
+    Model = "llama-3.1-70b-versatile",
     MaxTokens = 4000,
     Temperature = 0.7
 }
 ```
+
+**Note:** This project uses Groq's free API with Llama 3.1 70B model for script analysis. Get your free API key at https://console.groq.com/
 
 ---
 
