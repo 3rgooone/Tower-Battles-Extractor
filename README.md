@@ -8,7 +8,7 @@
 
 **Complete and Advanced Recovery System for Tower Battles**
 
-[Documentation](#documentation) • [Installation](#installation) • [Usage](#usage) • [Modules](#modules)
+[Installation](#installation) • [Usage](#usage) • [Configuration](#configuration)
 
 </div>
 
@@ -17,15 +17,16 @@
 ## 📋 Table of Contents
 
 - [Overview](#overview)
-- [Architecture](#architecture)
-- [Modules](#modules)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Configuration](#configuration)
-- [Exported Data](#exported-data)
+- [Complete Configuration Guide](#complete-configuration-guide)
+- [Available Modes](#available-modes)
+- [Module Configuration](#module-configuration)
+- [External API Setup](#external-api-setup)
+- [Discord Notifications](#discord-notifications)
+- [Output](#output)
 - [Security and Legality](#security-and-legality)
 - [FAQ](#faq)
-- [Credits](#credits)
 - [License](#license)
 
 ---
@@ -40,453 +41,361 @@ Reproduce Tower Battles at 100% by recovering all necessary data, including what
 
 ### ✨ Main Features
 
-#### Complete Recovery
-- ✅ **Complete scripts** with decryption, analysis, reconstruction and repair
-- ✅ **Complete map** with Workspace, Terrain, Lighting, SpawnPoints, Paths
-- ✅ **Complete assets** (images, sounds, meshes, animations) including hidden ones
-- ✅ **Hidden parts** via deep Garbage Collector scan
-- ✅ **Hidden properties** via gethiddenproperty
-- ✅ **System attributes and tags**
-
-#### Security and Exploits
-- 🔍 **VulnerabilityScanner** - Detection of security vulnerabilities
-- 🚪 **BackdoorScanner** - Detection of hidden backdoors
-- 💥 **ExploitScanner** - Scan of potential exploits
-- 🔑 **PrivilegeEscalation** - Analysis of available privileges
-- 📋 **DirectCopy** - Direct copy via exploits (optional)
-
-#### External Integration
-- 🤖 **ExternalAPIIntegration** - Automatic script understanding via external API (optional)
-
-#### Notifications
-- 📢 **DiscordNotifier** - Real-time notifications on Discord (optional)
-
-#### Multi-Agent System
-- 🤖 **AgentSystem** - Multi-agent architecture for automatic reverse-engineering
-- 🔍 **AgentExplorer** - Advanced Dex-style exploration
-- 🛠️ **AgentImplementer** - Implementation and reconstruction
-- 🧪 **AgentTester** - Automatic testing
-
----
-
-## Architecture
-
-### Global Schema
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                     TOWER BATTLES EXTRACTOR                              │
-│                              v4.0                                        │
-└─────────────────────────────────────────────────────────────────────────┘
-                                    │
-        ┌───────────────────────────┼───────────────────────────┐
-        │                           │                           │
-        ▼                           ▼                           ▼
-┌───────────────┐         ┌───────────────┐         ┌───────────────┐
-│  REAL-TIME    │         │  FULL RECOVERY│         │  AGENT SYSTEM │
-│  EXTRACTOR    │         │  SYSTEM       │         │               │
-│  (main.lua)   │         │  (14 phases)  │         │  (5 agents)   │
-└───────────────┘         └───────────────┘         └───────────────┘
-        │                           │                           │
-        ▼                           ▼                           ▼
-┌───────────────┐         ┌───────────────┐         ┌───────────────┐
-│ Network Spy   │         │ Deep Scanner  │         │ Orchestrator  │
-│ RAM Scanner   │         │ Script Decrypt│         │ Explorer      │
-│ Asset Preload │         │ Script Analyze│         │ Implementer   │
-│ UI Capture    │         │ Script Recon  │         │ Tester        │
-└───────────────┘         └───────────────┘         └───────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                        SECURITY MODULES                                 │
-├───────────────┬───────────────┬───────────────┬───────────────────────┤
-│ Vulnerability │   Backdoor    │    Exploit    │  Privilege           │
-│   Scanner     │   Scanner     │   Scanner     │  Escalation          │
-└───────────────┴───────────────┴───────────────┴───────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                        OUTPUT & NOTIFICATIONS                            │
-├───────────────┬───────────────┬───────────────┬───────────────────────┤
-│ JSON Export   │  Discord Notif│  Direct Copy  │  Final Report        │
-└───────────────┴───────────────┴───────────────┴───────────────────────┘
-```
-
-### Data Flow
-
-```
-Tower Battles Game
-        │
-        ├─→ Network Packets ─→ Network Spy ─→ NetworkLogs
-        │
-        ├─→ RAM Memory ──────→ RAM Scanner ─→ RAMLogs
-        │
-        ├─→ Scripts ─────────→ Script Analyzer ─→ ScriptData
-        │
-        ├─→ Instances ───────→ Instance Capture ─→ InstanceProperties
-        │
-        ├─→ Assets ──────────→ Asset Recovery ─→ AssetRegistry
-        │
-        └─→ Events ──────────→ Event Logger ─→ GameEvents
-```
-
----
-
-## Modules
-
-### 1. Real-Time Extractor (main.lua)
-
-**Features:**
-- **Network Packet Interceptor**: Bidirectional capture of client-server communications
-- **RAM & GC Scanner**: Intelligent memory scan with gameplay filtering
-- **Dynamic Asset Preloader**: Automatic asset preloading
-- **Instance Properties Capture**: Detailed property capture
-- **Script Data Capture**: Bytecode, upvalues and constants
-- **Game Events Logger**: Real-time game events
-- **Player Stats Tracker**: Player statistics
-
-**Usage:**
-```lua
-loadstring(readfile("TowerBattlesExtractor/main.lua"))()
-```
-
-### 2. Full Recovery System (FullRecovery.lua)
-
-**Features:**
-- Integration of 14 recovery phases
-- Automatic sequential execution
-- Structured export of all results
-- Complete final report
-
-**Phases:**
-1. Deep Scan - Deep GC and registry scan
-2. Script Decryptor - Script decryption
-3. Script Analyzer - Static analysis
-4. Script Reconstructor - Logic reconstruction
-5. Script Repairer - Automatic repair
-6. Map Extractor - Map extraction
-7. Asset Recovery - Asset recovery
-8. External API Analysis - External API analysis (optional)
-9. Vulnerability Scan - Vulnerability scan
-10. Backdoor Scan - Backdoor detection
-11. Exploit Scan - Exploit scan
-12. Privilege Escalation - Privilege analysis
-13. Direct Copy - Direct copy (optional)
-14. Final Report - Final report
-
-**Usage:**
-```lua
-loadstring(readfile("TowerBattlesExtractor/FullRecovery.lua"))()
-RunFullRecovery()
-```
-
-### 3. Deep Scanner (DeepScanner.lua)
-
-**Features:**
-- Garbage Collector scan (getgc)
-- Lua registry scan (getreg)
-- Hidden script detection
-- Hidden asset detection
-- Hidden property detection (gethiddenproperty)
-- Hidden attribute detection
-
-### 4. Script Decryptor (ScriptDecryptor.lua)
-
-**Features:**
-- Bytecode analysis
-- Encryption detection
-- Decryption attempts (XOR, Base64, ROT13, Reverse)
-- Obfuscation detection
-
-### 5. Script Analyzer (ScriptAnalyzer.lua)
-
-**Features:**
-- Structural analysis (functions, variables, dependencies)
-- Semantic analysis (script purpose, features)
-- Control flow analysis
-
-### 6. Script Reconstructor (ScriptReconstructor.lua)
-
-**Features:**
-- Code generation based on script purpose
-- Logic block extraction
-- Function, variable and event reconstruction
-- Map serialization and reconstruction
-
-### 7. Script Repairer (ScriptRepairer.lua)
-
-**Features:**
-- Error detection (syntax, dependencies, variables)
-- Automatic repair
-- Validation and optimization
-
-### 8. Map Extractor (MapExtractor.lua)
-
-**Features:**
-- Complete Workspace extraction
-- Terrain extraction
-- Lighting extraction
-- SpawnPoint extraction
-- Path extraction
-- Camera extraction
-
-### 9. Asset Recovery (AssetRecovery.lua)
-
-**Features:**
-- Visible asset recovery
-- Hidden asset recovery (via GC)
-- Recovery via ContentProvider
-- Recovery via ModuleScripts
-- Asset deduplication
-
-### 10. External API Integration (ExternalAPIIntegration.lua)
-
-**Features:**
-- Script analysis with external API
-- Script reconstruction with external API
-- Batch analysis
-- Flexible configuration
-
-### 11. Vulnerability Scanner (VulnerabilityScanner.lua)
-
-**Features:**
-- Scan of unsecured RemoteEvents/Functions
-- Vulnerable script analysis
-- Excessive permission detection
-- Injection point identification
-
-### 12. Backdoor Scanner (BackdoorScanner.lua)
-
-**Features:**
-- Classic backdoor detection
-- Backdoor analysis in scripts
-- Hidden backdoor scan (GC)
-- Backdoor analysis via attributes
-
-### 13. Exploit Scanner (ExploitScanner.lua)
-
-**Features:**
-- Remote exploit scan
-- Client exploit scan
-- Exploit chain analysis
-
-### 14. Privilege Escalation (PrivilegeEscalation.lua)
-
-**Features:**
-- Current privilege detection
-- Escalation method analysis
-- Escalation simulation (test only)
-
-### 15. Direct Copy (DirectCopy.lua)
-
-**Features:**
-- Copy via saveinstance (if available)
-- Copy via detected backdoor
-- Copy via Remote exploit
-- Copy via privilege escalation
-- Copy via script execution
-- Copy via HTTP (if endpoint available)
-
-### 16. Discord Notifier (DiscordNotifier.lua)
-
-**Features:**
-- Start notifications
-- Phase notifications
-- Error notifications
-- Success notifications
-- Vulnerability notifications
-- Privilege notifications
-
-### 17. Agent System (AgentSystem.lua)
-
-**Features:**
-- Orchestrator - Agent coordination
-- Explorer - Exploration and analysis
-- Implementer - Implementation and reconstruction
-- Tester - Automatic testing
-- Wiki - Automatic documentation
+- **Single File Execution** - Only need to execute `main.lua`, everything loads from GitHub
+- **Multi-Mode Operation** - Choose between FullRecovery, DeepScan, ScriptAnalysis, or AgentSystem
+- **Complete Recovery** - Scripts, Map, Assets, Hidden parts
+- **Security Scanning** - Vulnerability, Backdoor, Exploit detection
+- **External API Integration** - Optional Groq API for advanced script analysis
+- **Discord Notifications** - Real-time alerts via webhook
+- **Simple Configuration** - All settings in one place at the top of main.lua
 
 ---
 
 ## Installation
 
-### Prerequisites
+### Step 1: Copy the Execution URL
 
-**Required Exploit:**
-- `writefile` - Data saving
-- `readfile` - Module loading
-- `makefolder` - Folder creation
-- `isfile` - File verification
+Copy this URL:
+```
+https://raw.githubusercontent.com/3rgooone/Tower-Battles-Extractor/refs/heads/main/main.lua
+```
 
-**Recommended Advanced Functions:**
-- `getgc` - Garbage Collector scan
-- `getreg` - Lua registry scan
-- `getscriptbytecode` - Bytecode capture
-- `getupvalues` - Upvalue capture
-- `getconstants` - Constant capture
-- `gethiddenproperty` - Hidden properties
-- `getproperties` - Complete properties
-- `hookmetamethod` - Metamethod hooks (stealth mode)
+### Step 2: Execute in Your Exploit
 
-### Recommended Exploits
+In your Roblox exploit (Synapse X, Script-Ware, KRNL, etc.):
 
-- **Synapse X**: Full support for all features (recommended)
-- **Script-Ware**: Full support
-- **Krnl**: Partial support (legacy mode)
-- **Fluxus**: Partial support
+```lua
+loadstring(game:HttpGet("https://raw.githubusercontent.com/3rgooone/Tower-Battles-Extractor/refs/heads/main/main.lua"))()
+```
 
-### Installation Steps
+### Step 3: Configure (Optional)
 
-1. **Download the complete folder** `TowerBattlesExtractor/`
-2. **Place the folder** in your exploit workspace
-3. **Join the game** Tower Battles
-4. **Execute the script** (see Usage)
+Edit the configuration in `main.lua` before executing, or use the default settings.
 
 ---
 
 ## Usage
 
-### Mode 1: Auto Run (Recommended)
+### Quick Start (Default Configuration)
 
-The `AutoRun.lua` script launches everything automatically:
+Just execute the script with default settings:
 
 ```lua
-loadstring(readfile("TowerBattlesExtractor/AutoRun.lua"))()
-RunTowerBattlesExtractor()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/3rgooone/Tower-Battles-Extractor/refs/heads/main/main.lua"))()
 ```
 
-**Customization without file modification:**
+### Custom Configuration
+
+Copy the script locally, edit the `Config` table at the top, then execute:
 
 ```lua
-loadstring(readfile("TowerBattlesExtractor/AutoRun.lua"))()
-
--- Set your parameters
-_G.TowerBattlesExtractorConfig.DiscordWebhookURL = "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
-_G.TowerBattlesExtractorConfig.UseDirectCopy = true
-
--- Launch
-RunTowerBattlesExtractor()
-```
-
-**Or pass configuration directly:**
-
-```lua
-loadstring(readfile("TowerBattlesExtractor/AutoRun.lua"))()
-
-RunTowerBattlesExtractor({
-    DiscordWebhookURL = "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL",
-    UseDirectCopy = true,
-    UseExternalAPI = true,
-    ExternalAPIConfig = {
-        APIKey = "your-api-key",
-        Model = "gpt-4"
-    }
-})
-```
-
-### Mode 2: Manual Full Recovery
-
-```lua
-loadstring(readfile("TowerBattlesExtractor/FullRecovery.lua"))()
-RunFullRecovery()
-```
-
-### Mode 3: Real-Time Extractor
-
-```lua
+-- Edit the Config table in main.lua, then:
 loadstring(readfile("TowerBattlesExtractor/main.lua"))()
-```
-
-### Mode 4: Agent System
-
-```lua
-loadstring(readfile("TowerBattlesExtractor/AgentSystem_Main.lua"))()
-```
-
-### Mode 5: Custom Configuration
-
-```lua
-loadstring(readfile("TowerBattlesExtractor/FullRecovery.lua"))()
-
-ConfigureFullRecovery({
-    -- Recovery modules
-    UseDeepScan = true,
-    UseScriptDecryptor = true,
-    UseScriptAnalyzer = true,
-    UseScriptReconstructor = true,
-    UseScriptRepairer = true,
-    UseMapExtractor = true,
-    UseAssetRecovery = true,
-    
-    -- Security modules
-    UseVulnerabilityScanner = true,
-    UseBackdoorScanner = true,
-    UseExploitScanner = true,
-    UsePrivilegeEscalation = true,
-    UseDirectCopy = false, -- DANGEROUS
-    
-    -- Discord Webhook
-    UseDiscordNotifier = true,
-    DiscordWebhookURL = "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
-})
-
-RunFullRecovery()
 ```
 
 ---
 
-## Configuration
+## Complete Configuration Guide
 
-### Default Configuration
+All settings are in the `Config` table at the top of `main.lua`. Here's every option explained:
+
+### Basic Settings
 
 ```lua
-_G.TowerBattlesExtractorConfig = {
-    -- Recovery modules
+local Config = {
+    -- Mode: Choose what to run
+    Mode = "FullRecovery",  -- Options: "FullRecovery", "DeepScan", "ScriptAnalysis", "AgentSystem"
+}
+```
+
+**Mode Options:**
+- `FullRecovery` - Complete recovery with all modules (recommended)
+- `DeepScan` - Only deep memory scanning
+- `ScriptAnalysis` - Only script analysis
+- `AgentSystem` - Multi-agent automatic reconstruction
+
+---
+
+### Recovery Module Configuration
+
+```lua
+    -- Recovery Modules (true = enabled, false = disabled)
+    UseDeepScan = true,           -- Deep memory scanning
+    UseScriptDecryptor = true,    -- Script decryption
+    UseScriptAnalyzer = true,     -- Static script analysis
+    UseScriptReconstructor = true, -- Logic reconstruction
+    UseScriptRepairer = true,     -- Automatic script repair
+    UseMapExtractor = true,       -- Map extraction
+    UseAssetRecovery = true,      -- Asset recovery
+    UseExternalAPI = false,       -- External API analysis (requires API key)
+```
+
+**Recommendations:**
+- Enable all for complete recovery
+- Disable `UseExternalAPI` if you don't have an API key
+- Disable `UseScriptReconstructor` and `UseScriptRepairer` for faster scans
+
+---
+
+### Security Module Configuration
+
+```lua
+    -- Security Modules
+    UseVulnerabilityScanner = true,  -- Detect security vulnerabilities
+    UseBackdoorScanner = true,       -- Detect hidden backdoors
+    UseExploitScanner = true,        -- Scan for potential exploits
+    UsePrivilegeEscalation = true,   -- Analyze available privileges
+    UseDirectCopy = false,           -- Direct copy via exploits (DANGEROUS)
+```
+
+**Recommendations:**
+- Enable all security scanners for analysis
+- **NEVER** enable `UseDirectCopy` unless you know what you're doing
+- This can trigger anti-cheat systems
+
+---
+
+### Notification Configuration
+
+```lua
+    -- Notifications
+    UseDiscordNotifier = false,      -- Enable Discord notifications
+    DiscordWebhookURL = "",          -- Your Discord webhook URL
+```
+
+**To set up Discord notifications:**
+1. Create a Discord server
+2. Go to Server Settings → Integrations → Webhooks
+3. Create a new webhook
+4. Copy the webhook URL
+5. Set `UseDiscordNotifier = true`
+6. Paste the URL in `DiscordWebhookURL`
+
+---
+
+### External API Configuration (Groq - Free)
+
+```lua
+    -- External API (Groq - Free)
+    ExternalAPIConfig = {
+        APIKey = "",                  -- Get free key at https://console.groq.com/
+        Model = "llama-3.1-70b-versatile",
+        MaxTokens = 4000,
+        Temperature = 0.7
+    },
+```
+
+**To set up Groq API (Free):**
+1. Go to https://console.groq.com/
+2. Create a free account
+3. Go to API Keys
+4. Create a new API key
+5. Set `UseExternalAPI = true`
+6. Paste the key in `APIKey`
+
+**Available Groq Models (Free):**
+- `llama-3.1-70b-versatile` - Best for code analysis (recommended)
+- `llama-3.1-8b-instant` - Faster, smaller model
+- `mixtral-8x7b-32768` - Good alternative
+
+---
+
+### Export Configuration
+
+```lua
+    -- Export
+    ExportFormat = "JSON",           -- Options: "JSON", "LuaTable"
+    OutputPath = "TowerBattles_FullRecovery"  -- Output folder name
+```
+
+**Recommendations:**
+- Use `JSON` for easy viewing and parsing
+- Use `LuaTable` for direct Lua usage
+- Change `OutputPath` to organize different extractions
+
+---
+
+## Available Modes
+
+### Mode 1: FullRecovery (Recommended)
+
+Complete recovery with all enabled modules:
+
+```lua
+Config = {
+    Mode = "FullRecovery",
+    -- All recovery modules enabled
+    -- All security modules enabled
+}
+```
+
+**What it does:**
+1. Deep memory scan
+2. Script decryption and analysis
+3. Script reconstruction and repair
+4. Map extraction
+5. Asset recovery
+6. External API analysis (if enabled)
+7. Security scanning
+8. Final report generation
+
+**Output:** Complete recovery in `TowerBattles_FullRecovery/` folder
+
+---
+
+### Mode 2: DeepScan
+
+Only memory scanning:
+
+```lua
+Config = {
+    Mode = "DeepScan"
+}
+```
+
+**What it does:**
+- Deep GC memory scan
+- ReplicatedStorage scan
+- Hidden table detection
+- Gameplay data filtering
+
+**Output:** `DeepScan_Results.json`
+
+---
+
+### Mode 3: ScriptAnalysis
+
+Only script analysis:
+
+```lua
+Config = {
+    Mode = "ScriptAnalysis"
+}
+```
+
+**What it does:**
+- Static script analysis
+- Bytecode extraction
+- Upvalue extraction
+- Dependency mapping
+
+**Output:** `ScriptAnalysis_Results.json`
+
+---
+
+### Mode 4: AgentSystem
+
+Multi-agent automatic reconstruction:
+
+```lua
+Config = {
+    Mode = "AgentSystem"
+}
+```
+
+**What it does:**
+- Automatic exploration
+- Logic implementation
+- Testing and validation
+- Progressive reconstruction
+
+**Output:** Agent system logs and reconstructed files
+
+---
+
+## Module Configuration
+
+### Enable/Disable Specific Modules
+
+You can mix and match modules:
+
+```lua
+Config = {
+    Mode = "FullRecovery",
+    
+    -- Only enable what you need
     UseDeepScan = true,
-    UseScriptDecryptor = true,
     UseScriptAnalyzer = true,
-    UseScriptReconstructor = true,
-    UseScriptRepairer = true,
     UseMapExtractor = true,
-    UseAssetRecovery = true,
+    
+    -- Disable others for speed
+    UseScriptDecryptor = false,
+    UseScriptReconstructor = false,
+    UseScriptRepairer = false,
+    UseAssetRecovery = false,
     UseExternalAPI = false,
     
     -- Security modules
     UseVulnerabilityScanner = true,
-    UseBackdoorScanner = true,
-    UseExploitScanner = true,
-    UsePrivilegeEscalation = true,
-    UseDirectCopy = false, -- DANGEROUS
-    
-    -- Discord Webhook
-    UseDiscordNotifier = false,
-    DiscordWebhookURL = "",
-    
-    -- Export
-    ExportFormat = "JSON",
-    OutputPath = "TowerBattles_FullRecovery"
+    UseBackdoorScanner = false,
+    UseExploitScanner = false,
+    UsePrivilegeEscalation = false,
+    UseDirectCopy = false
 }
 ```
-
-### External API Configuration
-
-```lua
-ExternalAPIConfig = {
-    APIKey = "your-groq-api-key",
-    BaseURL = "https://api.groq.com/openai/v1",
-    Model = "llama-3.1-70b-versatile",
-    MaxTokens = 4000,
-    Temperature = 0.7
-}
-```
-
-**Note:** This project uses Groq's free API with Llama 3.1 70B model for script analysis. Get your free API key at https://console.groq.com/
 
 ---
 
-## Exported Data
+## External API Setup
 
-Results are exported in the `TowerBattles_FullRecovery/` folder:
+### Step-by-Step Groq Setup
+
+1. **Create Account**
+   - Go to https://console.groq.com/
+   - Sign up (free)
+
+2. **Get API Key**
+   - Go to API Keys section
+   - Click "Create API Key"
+   - Copy the key
+
+3. **Configure in main.lua**
+   ```lua
+   Config = {
+       UseExternalAPI = true,
+       ExternalAPIConfig = {
+           APIKey = "gsk_your-key-here",
+           Model = "llama-3.1-70b-versatile"
+       }
+   }
+   ```
+
+4. **Benefits of External API**
+   - Better script understanding
+   - Automatic logic reconstruction
+   - Detailed analysis reports
+   - Dependency detection
+
+---
+
+## Discord Notifications
+
+### Setup Instructions
+
+1. **Create Webhook**
+   - Discord Server → Settings → Integrations → Webhooks
+   - Create Webhook → Copy URL
+
+2. **Configure**
+   ```lua
+   Config = {
+       UseDiscordNotifier = true,
+       DiscordWebhookURL = "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
+   }
+   ```
+
+3. **What You'll Receive**
+   - Recovery start notifications
+   - Phase completion alerts
+   - Error notifications
+   - Final summary reports
+   - Security alerts (backdoors, vulnerabilities)
+
+---
+
+## Output
+
+All results are saved to the `OutputPath` folder (default: `TowerBattles_FullRecovery/`):
 
 ```
 TowerBattles_FullRecovery/
@@ -506,186 +415,64 @@ TowerBattles_FullRecovery/
 └── Final_Report.json
 ```
 
-### Data Structure
-
-#### NetworkLogs
-```json
-{
-  "Type": "RemoteEvent",
-  "Name": "ReplicatedStorage.Remotes.PlaceTower",
-  "Direction": "Client->Server",
-  "Timestamp": 1234567890.123,
-  "Method": "FireServer",
-  "Arguments": [...]
-}
-```
-
-#### ScriptData
-```json
-{
-  "Name": "TowerConfig",
-  "ClassName": "ModuleScript",
-  "Path": "ReplicatedStorage.Modules.TowerConfig",
-  "Disabled": false,
-  "HasBytecode": true,
-  "BytecodeLength": 1234,
-  "Upvalues": {...},
-  "Constants": [...]
-}
-```
-
-#### InstanceProperties
-```json
-{
-  "ClassName": "Model",
-  "Name": "Tower",
-  "Properties": {
-    "Anchored": {"Type": "boolean", "Value": true},
-    "Position": {"Type": "Vector3", "Value": {"X": 10, "Y": 5, "Z": 20}}
-  }
-}
-```
-
 ---
 
 ## Security and Legality
 
-### ⚠️ Important Warning
+### ⚠️ Legal Disclaimer
 
-This project is for research and analysis purposes only. Using these tools to exploit games without authorization is illegal and violates Roblox Terms of Service.
+This tool is for **educational purposes only**. Use it responsibly:
 
-### Authorized Use
+- **DO NOT** use on games you don't own
+- **DO NOT** use for unauthorized exploitation
+- **DO NOT** distribute recovered content without permission
+- **DO** use for learning and understanding game mechanics
+- **DO** use to secure your own games
 
-- ✅ Analysis of your own games
-- ✅ Analysis with explicit permission from the owner
-- ✅ Research and learning
-- ✅ Educational reconstruction
+### Security Risks
 
-### Prohibited Use
-
-- ❌ Unauthorized game exploitation
-- ❌ Cheating or unfair advantage
-- ❌ Unauthorized monetization
-- ❌ Distribution of modified versions
-
-### Legal Notices
-
-- This project is developed for educational purposes
-- The goal is 100% non-profit
-- Extracted data must not be used for malicious purposes
-- The user is solely responsible for the use of these tools
-
-### Risks
-
-**DirectCopy:**
-- ⚠️ **Very dangerous** - Can trigger anti-cheat
-- ⚠️ Can lead to bans
-- ⚠️ Disabled by default for this reason
-
-**Security Modules:**
-- ⚠️ Exploit scans can be detected
-- ⚠️ Privilege escalation can be detected
-- ⚠️ Use with caution
+- **DirectCopy module** is dangerous and can trigger anti-cheat
+- Always test in a safe environment first
+- Some modules may be detected by advanced anti-cheat systems
+- Use at your own risk
 
 ---
 
 ## FAQ
 
-### Tool doesn't start
+### Q: Do I need to download all files?
+**A:** No! Only execute `main.lua`. All modules load automatically from GitHub.
 
-**Solution:**
-- Check that your exploit supports `writefile`
-- Ensure you have the necessary permissions
-- Verify all files are in the `TowerBattlesExtractor/` folder
+### Q: How do I change the mode?
+**A:** Edit the `Mode` field in the `Config` table at the top of `main.lua`.
 
-### No data extracted
+### Q: Is the external API free?
+**A:** Yes! Groq offers a generous free tier. Get your key at https://console.groq.com/
 
-**Solution:**
-- Check that you are in the Tower Battles game
-- Ensure you interact with the game (place towers, etc.)
-- Check the console for error messages
+### Q: Can I disable specific modules?
+**A:** Yes! Set any `UseXXX` field to `false` in the Config table.
 
-### Export error
+### Q: Where are the results saved?
+**A:** In the folder specified by `OutputPath` (default: `TowerBattles_FullRecovery/`).
 
-**Solution:**
-- Check available disk space
-- Ensure `writefile` works
-- Try reducing the amount of captured data
+### Q: How do I set up Discord notifications?
+**A:** Create a webhook in Discord, then set `UseDiscordNotifier = true` and paste the URL.
 
-### Stealth mode not activated
+### Q: What mode should I use?
+**A:** `FullRecovery` is recommended for complete extraction. Use other modes for specific tasks.
 
-**Solution:**
-- Check that your exploit supports `hookmetamethod`
-- The tool will automatically switch to legacy mode if unavailable
-
-### Discord notifications not working
-
-**Solution:**
-- Verify the webhook URL is correct
-- Ensure `UseDiscordNotifier = true`
-- Check that the webhook is active on Discord
-
-### How to use External API Integration?
-
-**Solution:**
-- Get an API key
-- Configure `ExternalAPIConfig` with your API key
-- Enable `UseExternalAPI = true`
-
----
-
-## Credits
-
-### Source Projects
-
-- **Dex Explorer** - https://github.com/Benotec/Dex
-- **UniversalSynSaveInstance** - https://github.com/luau/UniversalSynSaveInstance
-- **UniversalMethodFinder** - https://github.com/luau/SomeHub
-
-### Development
-
-- Developed for Tower Battles Reborn
-- Multi-module architecture
-- Multi-agent system
-- External API integration
-
-### Acknowledgments
-
-- To the Roblox community for tools and resources
-- To the creators of source projects
-- To contributors and testers
+### Q: Is this safe to use?
+**A:** Most modules are safe. Avoid `UseDirectCopy = true` as it can trigger anti-cheat.
 
 ---
 
 ## License
 
-MIT License
-
-This project is in accordance with the licenses of source projects.
-
----
-
-## Additional Documentation
-
-For more detailed information about specific modules, refer to the inline code documentation in each module file.
+MIT License - See LICENSE file for details.
 
 ---
 
 ## Support
 
-For any questions or issues:
-
-- Consult documentation files
-- Check the console for error messages
-- Adjust configuration according to your needs
-- Open an issue on GitHub (if available)
-
----
-
-<div align="center">
-
-**⚠️ Warning:** This project is for educational purposes only. Unauthorized use is prohibited.
-
-**📧 Contact:** For legal questions or authorization, contact the project owner.
-
-</div>
+For issues or questions, check the GitHub repository:
+https://github.com/3rgooone/Tower-Battles-Extractor
