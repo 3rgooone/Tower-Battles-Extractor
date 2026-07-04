@@ -1,0 +1,40 @@
+# Tower Battles Extractor - .gitignore
+
+# Dossiers de sortie
+TowerBattles_FullRecovery/
+TowerBattles_Recovery/
+TowerBattles_Extracted/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.log
+
+# Fichiers de configuration locaux
+config.lua
+local_config.lua
+
+# Fichiers sensibles
+*webhook*.lua
+*api_key*.lua
+*secret*.lua
+
+# Fichiers de résultats
+*_Results.json
+*_Report.json
+
+# Dossiers système
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Roblox Studio
+*.rbxl
+*.rbxlx
+*.rbxlm
